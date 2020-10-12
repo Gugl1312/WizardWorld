@@ -17,12 +17,13 @@ public class Movement : MonoBehaviour
     public bool rotateY = true;
     private Rigidbody rb;
     public float jump;
+    public Transform playerTrans;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         rb = GetComponent<Rigidbody>();
-        Debug.Log(rb.constraints);
+        //Debug.Log(rb.constraints);
     }
     void FixedUpdate()
     {        
@@ -33,7 +34,7 @@ public class Movement : MonoBehaviour
         cameraRotationY += Input.GetAxis("Mouse X") * sensitivity;
         cameraRotationYl = Input.GetAxis("Mouse X") * sensitivity;
         //cameraRotationX = Mathf.Clamp(cameraRotationX, -45f, 45f);
-        cameraRotationY = Mathf.Clamp(cameraRotationY, -45f, 45f);
+        //cameraRotationY = Mathf.Clamp(cameraRotationY, -45f, 45f);
         //cameraRotation += new Vector3(-Input.GetAxis("Mouse Y") * sensitivity, Input.GetAxis("Mouse X") * sensitivity, 0);
         //kamera.localEulerAngles = new Vector3(cameraRotationX, cameraRotationY, 0);
         this.transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
@@ -53,6 +54,10 @@ public class Movement : MonoBehaviour
             Debug.Log(rb.velocity);
         }
         Debug.Log(rb.velocity);
+        //kamera.rotation.y = playerTrans.rotation.y;
+        Debug.Log("Roation player: " + playerTrans.rotation);
+        //cameraRotationX = cameraRotationXl;
+        //cameraRotationY = cameraRotationYl;
     }
     public void LateUpdate()
     {
