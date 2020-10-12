@@ -1,0 +1,1 @@
+{"Name":"Janko","health":55,"damage":20,"armor":5}
