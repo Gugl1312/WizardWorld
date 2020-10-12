@@ -23,7 +23,6 @@ public class Movement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         rb = GetComponent<Rigidbody>();
-        //Debug.Log(rb.constraints);
     }
     void FixedUpdate()
     {        
@@ -33,36 +32,17 @@ public class Movement : MonoBehaviour
         cameraRotationXl = Input.GetAxis("Mouse Y") * sensitivity;
         cameraRotationY += Input.GetAxis("Mouse X") * sensitivity;
         cameraRotationYl = Input.GetAxis("Mouse X") * sensitivity;
-        //cameraRotationX = Mathf.Clamp(cameraRotationX, -45f, 45f);
-        //cameraRotationY = Mathf.Clamp(cameraRotationY, -45f, 45f);
-        //cameraRotation += new Vector3(-Input.GetAxis("Mouse Y") * sensitivity, Input.GetAxis("Mouse X") * sensitivity, 0);
-        //kamera.localEulerAngles = new Vector3(cameraRotationX, cameraRotationY, 0);
-        this.transform.Rotate(0, Input.GetAxis("Mouse X"), 0);
         this.transform.localEulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
-        //Debug.Log("X rotation: " + cameraRotationX);
-        //Debug.Log("Y rotation: " + cameraRotationY);
-        //Debug.Log(cameraRotationX);
-        //Debug.Log(cameraRotationY);
-        //kamera.RotateAround(lookAt.transform.position, Vector3.up, cameraRotationYl);
-        //Debug.Log(transform.rotation.eulerAngles.y);
-        kamera.RotateAround(lookAt.transform.position, Vector3.right, -cameraRotationXl);
         kamera.LookAt(this.transform.position);
-        playerTrans.rotation.y = kamera.rotation.y;
-        //kamera.rotation.y = this.transform.rotation.y;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = Vector3.up * jump;
-            Debug.Log(rb.velocity);
         }
-        //Debug.Log(rb.velocity);
-        //kamera.rotation.y = this.transform.rotate.y;
-        //cameraRotationX = cameraRotationXl;
-        //cameraRotationY = cameraRotationYl;
     }
     public void LateUpdate()
     {
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
-        this.transform.localEulerAngles = new Vector3(0, cameraRotationY, 0);
+        this.transform.localEulerAngles = new Vector3(cameraRotationX, cameraRotationY, 0);
         rb.velocity = new Vector3(0, rb.velocity.y, 0);
     }
 }
