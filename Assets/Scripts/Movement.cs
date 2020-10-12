@@ -29,8 +29,8 @@ public class Movement : MonoBehaviour
     {        
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         transform.Translate(movement * speed);
-        cameraRotationX += -Input.GetAxis("Mouse Y") * sensitivity;
-        cameraRotationXl = -Input.GetAxis("Mouse Y") * sensitivity;
+        cameraRotationX += Input.GetAxis("Mouse Y") * sensitivity;
+        cameraRotationXl = Input.GetAxis("Mouse Y") * sensitivity;
         cameraRotationY += Input.GetAxis("Mouse X") * sensitivity;
         cameraRotationYl = Input.GetAxis("Mouse X") * sensitivity;
         //cameraRotationX = Mathf.Clamp(cameraRotationX, -45f, 45f);
@@ -44,18 +44,18 @@ public class Movement : MonoBehaviour
         //Debug.Log(cameraRotationX);
         //Debug.Log(cameraRotationY);
         //kamera.RotateAround(lookAt.transform.position, Vector3.up, cameraRotationYl);
-        kamera.LookAt(lookAt);        
         //Debug.Log(transform.rotation.eulerAngles.y);
         kamera.RotateAround(lookAt.transform.position, Vector3.right, -cameraRotationXl);
-        kamera.LookAt(lookAt);        
+        kamera.LookAt(this.transform.position);
+        playerTrans.rotation.y = kamera.rotation.y;
+        //kamera.rotation.y = this.transform.rotation.y;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = Vector3.up * jump;
             Debug.Log(rb.velocity);
         }
-        Debug.Log(rb.velocity);
-        //kamera.rotation.y = playerTrans.rotation.y;
-        Debug.Log("Roation player: " + playerTrans.rotation);
+        //Debug.Log(rb.velocity);
+        //kamera.rotation.y = this.transform.rotate.y;
         //cameraRotationX = cameraRotationXl;
         //cameraRotationY = cameraRotationYl;
     }
